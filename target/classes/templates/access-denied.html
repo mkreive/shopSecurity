@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+    <title>BARBORA</title>
+</head>
+
+<body>
+<div class="navigation">
+    <a class="nav" href="/home">Home</a>
+    <a class="nav" href="/products">Products</a>
+    <a class="nav" href="/login">Login</a>
+</div>
+
+<div class="container">
+<h2 class="header">Access Denied Page</h2>
+<p>
+    Access denied - You are not authorized to access this resource.
+</p>
+    <button class="button"><a th:href="@{/home}">Go back home</a></button>
+
+<form action="#" th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+</div>
+</body>
+</html>

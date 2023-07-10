@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>BARBORA</title>
+  <link th:href="@{/styles/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="navigation">
+    <a class="nav" href="/home">Home</a>
+    <a class="nav" href="/products">Products</a>
+    <a class="nav" href="/login">Login</a>
+    <label for="search" class="input--search">
+      <input id="search" name="search"  type="text" placeholder="search..">
+    </label>
+  </div>
+
+  <div class="container">
+    <h2 class="header">BARBORA PRODUCTS LIST</h2>
+    <div sec:authorize="hasRole('CUSTOMER')">
+    <table class="table">
+      <tr class="row">
+        <td>id</td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Amount</td>
+      </tr>
+      <tr class="row" th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${book.amount}"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div sec:authorize="hasRole('MANAGER')">
+  <td>
+    <button class="button"><a href="/add">Add a new book</a></button>
+    <button class="button"><a th:href="@{'/edit/' + ${product.id}}">Edit</a></button>
+  </td>
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+  <td>
+    <button class="button"><a href="/add">Add a new book</a></button>
+    <button class="button"><a th:href="@{'/edit/' + ${product.id}}">Edit</a></button>
+    <button class="button"><a th:href="@{'/delete/' + ${product.id}}">Delete</a></button>
+  </td>
+</div>
+
+<form action="#" th:action="@{/logout}" method="POST">
+  <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>

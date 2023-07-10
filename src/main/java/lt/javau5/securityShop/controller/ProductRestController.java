@@ -36,7 +36,7 @@ public class ProductRestController {
         return productService.save(product);
     }
 
-    @PutMapping("products")
+    @PutMapping("/products")
     public Product updateProduct(@RequestBody Product product) {
         return productService.save(product);
     }
@@ -51,8 +51,4 @@ public class ProductRestController {
 
         productService.deleteById(id);
     }
-
-
-
-
 }
